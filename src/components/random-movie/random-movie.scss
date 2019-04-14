@@ -1,0 +1,14 @@
+.movie-card-box{
+    display: flex;
+
+    .movie-card{
+
+        .card-text{
+            max-width: 100%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    }
+}
+
