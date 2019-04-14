@@ -31,7 +31,7 @@ export default class RandomMovie extends Component {
     }
 
     onError = (err) => {
-        alert(err)
+        console.log(err);
     }
 
     async getMovies(amount){
@@ -40,9 +40,10 @@ export default class RandomMovie extends Component {
         for (let i = 0; i < amount; i++){
              const randomId = this.generateRandomId()
 
-            await this.api.getById(randomId)
+            await this.api
+                .getById(randomId)
                 .then((movie) => {
-                    movie.genres = movie.genres.map(el => el.name).join('')
+                    movie.genres = movie.genres.map(el => el.name).join(', ')
                     movieList.push(movie)
                 })
                 .catch(() => this.onError(i))
@@ -65,8 +66,11 @@ export default class RandomMovie extends Component {
 
 
         const moviesCards = movies.map(movie => {
+
+            const { id } = movie
+
             return(
-                <div className="col-3 movie-card-box">
+                <div className="col-3 movie-card-box" key={ id }>
                     <MovieContent movie={ movie } />
                 </div>
             )
@@ -85,7 +89,7 @@ const MovieContent = ({ movie }) => {
     const { id, title, year, genres, poster } = movie
 
     return(
-        <div className="card movie-card" >
+        <div className="card movie-card">
             <img src={ poster } className="card-img-top" alt="..." />
             <div className="card-body">
                 <h5 className="card-title">{ title }</h5>

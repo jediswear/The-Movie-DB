@@ -1,24 +1,69 @@
-import React from 'react'
+import React, { Component } from 'react'
+import Loader from '../loader'
 
-const ItemList = () => {
-    return (
-        <div className="col-8">
-            <ul className="list-group">
-                <li className="list-group-item d-flex justify-content-between align-items-center">
-                    Cras justo odio
-                    <span className="badge badge-primary badge-pill">14</span>
+export default class ItemList extends Component {
+
+    state = {
+        list: []
+    }
+
+    getList(){
+        const { getData } = this.props
+
+        getData()
+            .then(res => {
+                this.setState({
+                    list: res
+                })
+            })
+    }
+
+    componentDidMount(){
+        setTimeout(() => this.getList(), 1000)
+    }
+
+    render(){
+
+        const { list } = this.state
+        const { onSelected } = this.props
+
+        if (list.length === 0){
+            return (
+                    <div className="col-8">
+                        <Loader/>
+                    </div>
+                )
+        }
+
+        const movies = list.map(movie => {
+
+            const { id } = movie
+
+            return(
+                <li className="list-group-item d-flex justify-content-between align-items-center" key={ id } onClick={ () => onSelected(id) }>
+                    <Item movie={ movie } />
                 </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center">
-                    Dapibus ac facilisis in
-                    <span className="badge badge-primary badge-pill">2</span>
-                </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center">
-                    Morbi leo risus
-                    <span className="badge badge-primary badge-pill">1</span>
-                </li>
-            </ul>
-        </div>
-    )
+            )
+        })
+
+        return (
+            <div className="col-8">
+                <ul className="list-group">
+                    { movies }
+                </ul>
+            </div>
+        )
+    }
 }
 
-export default ItemList
+const Item = ({ movie }) => {
+
+    const { title, vote_average } = movie
+
+    return(
+        <React.Fragment>
+            { title }
+            <span className="badge badge-primary badge-pill">{ vote_average }</span>
+        </React.Fragment>
+    )
+}

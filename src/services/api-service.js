@@ -9,28 +9,7 @@ export default class ApiService {
 
     _token = window.localStorage.request_token
 
-    _objectToParams(obj) {
-        obj.apikey = this._apiKey
-        const keys = Object.keys(obj)
-        const params = keys.map(el => `${el}=${obj[el]}`)
-
-        return params.reduce((total, el) => `${total}&${el}`)
-    }
-
-    _buildUrl(params) {
-        return `${this._baseUrl}/?${this._objectToParams(params)}`
-    }
-
-    _keysToLowerCase(obj){
-        const keys = Object.keys(obj)
-        const newObj = {}
-
-        keys.forEach((el, i) => newObj[el.toLowerCase()] = obj[el])
-
-        return newObj
-    }
-
-    async getResource(method) {
+    getResource = async (method) => {
 
         const res = await fetch(`${this._baseUrl}${method}?api_key=${this._apiKey}`)
 
@@ -46,19 +25,12 @@ export default class ApiService {
         return this._transformMovieData(res)
     }
 
-    _getPosterPath(imgPath){
-        return `${this._imageBase}w500${imgPath}`
+    getPopular = async () => {
+        const res = await this.getResource('movie/popular')
+        return await res.results
     }
 
-    _transformMovieData({ id, title, release_date, genres, poster_path}){
-        return {
-            id,
-            title,
-            year: moment(release_date).format('YYYY'),
-            genres,
-            poster: this._getPosterPath(poster_path)
-        }
-    }
+
 
     async registerToken(){
         const url = `https://www.themoviedb.org/authenticate/${window.localStorage.request_token}`
@@ -86,5 +58,40 @@ export default class ApiService {
             .then(res => {
                 console.log(res);
             })*/
+    }
+
+    _objectToParams(obj) {
+        obj.apikey = this._apiKey
+        const keys = Object.keys(obj)
+        const params = keys.map(el => `${el}=${obj[el]}`)
+
+        return params.reduce((total, el) => `${total}&${el}`)
+    }
+
+    _buildUrl(params) {
+        return `${this._baseUrl}/?${this._objectToParams(params)}`
+    }
+
+    _keysToLowerCase(obj){
+        const keys = Object.keys(obj)
+        const newObj = {}
+
+        keys.forEach((el, i) => newObj[el.toLowerCase()] = obj[el])
+
+        return newObj
+    }
+
+    _getPosterPath(imgPath){
+        return `${this._imageBase}w500${imgPath}`
+    }
+
+    _transformMovieData({ id, title, release_date, genres, poster_path}){
+        return {
+            id,
+            title,
+            year: moment(release_date).format('YYYY'),
+            genres,
+            poster: this._getPosterPath(poster_path)
+        }
     }
 }
