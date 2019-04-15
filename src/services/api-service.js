@@ -9,9 +9,11 @@ export default class ApiService {
 
     _token = window.localStorage.request_token
 
-    getResource = async (method) => {
+    getResource = async (method, params) => {
 
-        const res = await fetch(`${this._baseUrl}${method}?api_key=${this._apiKey}`)
+        const url = this._buildUrl(method, params)
+
+        const res = await fetch(url)
 
         if(!res.ok){
             throw new Error('Something goes wrong')
@@ -30,19 +32,55 @@ export default class ApiService {
         return await res.results
     }
 
-
-
-    async registerToken(){
-        const url = `https://www.themoviedb.org/authenticate/${window.localStorage.request_token}`
-        window.open(url,'_blank');
+    async getGenres(){
+        const res = await this.getResource('genre/movie/list')
+        window.localStorage.allGenres = JSON.stringify(res.genres)
     }
 
-    async getToken() {
-        const auth = await fetch(`${this._baseUrl}authentication/token/new?api_key=${this._apiKey}`)
-        const data = await auth.json()
-        window.localStorage.request_token = data.request_token
-        console.log(data.request_token);
+    getGenreNames(...ids) {
+        const genres = JSON.parse(window.localStorage.allGenres)
+        const genreIds = [...ids]
+        const names = []
+        genreIds.forEach(id => {
+            const isExist = genres.findIndex(genre => {
+                if (id === genre.id) {
+                    return genre.name
+                }
+            })
+
+            if (isExist >= 0) {
+                names.push(genres[isExist].name)
+            }
+        })
+
+        return names
     }
+
+    getNowPlaying = async (amount = 4) => {
+        const params = {
+            region: 'UA'
+        }
+        const res = await this.getResource('movie/now_playing', params)
+
+        const list = await this._transformMovieData(res.results)
+
+        return list
+    }
+
+
+
+    // async registerToken(){
+    //     const url = `https://www.themoviedb.org/authenticate/${window.localStorage.request_token}`
+    //     window.open(url,'_blank');
+    // }
+
+    // async getToken() {
+    //     const auth = await fetch(`${this._baseUrl}authentication/token/new?api_key=${this._apiKey}`)
+    //     const data = await auth.json()
+    //     window.localStorage.request_token = data.request_token
+    //
+    //     this.registerToken()
+    // }
 
     async newSession(){
 
@@ -61,15 +99,15 @@ export default class ApiService {
     }
 
     _objectToParams(obj) {
-        obj.apikey = this._apiKey
         const keys = Object.keys(obj)
         const params = keys.map(el => `${el}=${obj[el]}`)
 
         return params.reduce((total, el) => `${total}&${el}`)
     }
 
-    _buildUrl(params) {
-        return `${this._baseUrl}/?${this._objectToParams(params)}`
+    _buildUrl(method, params = {}) {
+        params.api_key = this._apiKey
+        return `${this._baseUrl}${method}?${this._objectToParams(params)}`
     }
 
     _keysToLowerCase(obj){
@@ -85,13 +123,48 @@ export default class ApiService {
         return `${this._imageBase}w500${imgPath}`
     }
 
-    _transformMovieData({ id, title, release_date, genres, poster_path}){
-        return {
-            id,
-            title,
-            year: moment(release_date).format('YYYY'),
-            genres,
-            poster: this._getPosterPath(poster_path)
+    /**
+     * агрумент массив
+     * трансформирует данные массива фильмов
+     * */
+    async _transformMovieData(movies){
+
+        /**
+         * если нет списка id жанров
+         * */
+        if (!window.localStorage.allGenres) {
+            await this.getGenres()
         }
+
+        /**
+         * если аргемент не массив
+         * */
+        if(!Array.isArray(movies)){
+            const temp = []
+            temp.push(movies)
+            movies = temp
+        }
+
+
+        let formattedData = movies.map(({ id, title, release_date, genres, genre_ids, poster_path}) => {
+
+            if(!genres){
+                genres = this.getGenreNames(...genre_ids)
+                genres = genres.join(', ')
+            }
+
+            return {
+                id,
+                    title,
+                    year: moment(release_date).format('YYYY'),
+                    genres,
+                    poster: this._getPosterPath(poster_path)
+            }
+        })
+
+        /**
+         * если длинна масива 1 возвращает обьект фильма, иначе массив фильмов
+         * */
+        return formattedData.length === 1 ? formattedData[0] : formattedData
     }
 }

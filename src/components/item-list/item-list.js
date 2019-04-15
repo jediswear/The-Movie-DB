@@ -26,6 +26,7 @@ export default class ItemList extends Component {
 
         const { list } = this.state
         const { onSelected } = this.props
+        const content = (item) => this.props.children(item)
 
         if (list.length === 0){
             return (
@@ -41,7 +42,7 @@ export default class ItemList extends Component {
 
             return(
                 <li className="list-group-item d-flex justify-content-between align-items-center" key={ id } onClick={ () => onSelected(id) }>
-                    <Item movie={ movie } />
+                    <Item movie={ movie } renderItem={ (movie) => content(movie) } />
                 </li>
             )
         })
@@ -56,14 +57,13 @@ export default class ItemList extends Component {
     }
 }
 
-const Item = ({ movie }) => {
+const Item = ({ movie, renderItem }) => {
 
     const { title, vote_average } = movie
 
     return(
         <React.Fragment>
-            { title }
-            <span className="badge badge-primary badge-pill">{ vote_average }</span>
+            { renderItem(movie) }
         </React.Fragment>
     )
 }

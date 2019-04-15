@@ -17,40 +17,22 @@ export default class RandomMovie extends Component {
         loaded: false
     }
 
-    async updateMovie() {
+    updateMovie(amount = 4) {
+        this.api
+            .getNowPlaying()
+            .then(list => {
 
-        const list = await this.getMovies(4)
-
-        this.setState(() => {
-            return {
-                movies: list,
-                loaded: true
-            }
-        })
-
+                this.setState({
+                    movies: list.splice(0, amount),
+                    loaded: true
+                })
+            })
     }
 
     onError = (err) => {
         console.log(err);
     }
 
-    async getMovies(amount){
-        const movieList = []
-
-        for (let i = 0; i < amount; i++){
-             const randomId = this.generateRandomId()
-
-            await this.api
-                .getById(randomId)
-                .then((movie) => {
-                    movie.genres = movie.genres.map(el => el.name).join(', ')
-                    movieList.push(movie)
-                })
-                .catch(() => this.onError(i))
-        }
-
-        return movieList
-    }
 
     generateRandomId(){
         return Math.floor(Math.random()*1000)
@@ -64,7 +46,6 @@ export default class RandomMovie extends Component {
 
         const { loaded, movies } = this.state
 
-
         const moviesCards = movies.map(movie => {
 
             const { id } = movie
@@ -77,7 +58,7 @@ export default class RandomMovie extends Component {
         })
 
         return(
-            <div className="row">
+            <div className="row top-block">
                 { loaded ? moviesCards : <Loader/> }
             </div>
         )

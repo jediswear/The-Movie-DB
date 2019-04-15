@@ -19,17 +19,30 @@ export default class App extends Component {
         })
     }
 
+    componentDidMount(){
+        this.api.getGenres()
+    }
+
 
     render(){
 
         const { selectedItem } = this.state
+        const itemList = <ItemList
+            onSelected={this.onItemSelected}
+            getData={this.api.getPopular}
+        >
+            {({title, vote_average}) => (
+            <React.Fragment>
+                {title}<span className="badge badge-primary badge-pill">{vote_average}</span>
+            </React.Fragment>)}
+        </ItemList>
 
         return(
             <div className="container">
                 <Header title="The Movie DB"/>
                 <RandomMovie/>
                 <div className="row">
-                    <ItemList onSelected={ this.onItemSelected } getData={ this.api.getPopular }/>
+                    { itemList }
                     <ItemDetails itemId={ selectedItem }/>
                 </div>
             </div>
