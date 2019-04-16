@@ -1,0 +1,26 @@
+.header{
+    background: #081c24;
+
+    .navbar-brand{
+        font-weight: 700;
+        color: #01d277;
+        transition: .3s;
+
+        &:hover{
+            color: #ffffff;
+        }
+    }
+
+    .search-field{
+        border: none;
+    }
+
+    .search-btn{
+        background: #082931;
+        border: none;
+
+        &:hover{
+            background: #540f45;
+        }
+    }
+}

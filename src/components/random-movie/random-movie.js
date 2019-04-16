@@ -17,7 +17,7 @@ export default class RandomMovie extends Component {
         loaded: false
     }
 
-    updateMovie(amount = 4) {
+    updateMovie(amount = 6) {
         this.api
             .getNowPlaying()
             .then(list => {
@@ -51,27 +51,33 @@ export default class RandomMovie extends Component {
             const { id } = movie
 
             return(
-                <div className="col-3 movie-card-box" key={ id }>
+                <div className="col-2" key={ id }>
                     <MovieContent movie={ movie } />
                 </div>
             )
         })
 
         return(
-            <div className="row top-block">
-                { loaded ? moviesCards : <Loader/> }
-            </div>
+            <React.Fragment>
+                <h6>Now in theatres:</h6>
+                <div className="row top-block">
+                    {loaded ? moviesCards : <Loader/>}
+                </div>
+            </React.Fragment>
         )
     }
 }
 
 const MovieContent = ({ movie }) => {
 
-    const { id, title, year, genres, poster } = movie
+    const { id, title, year, genres, poster, rating } = movie
 
     return(
         <div className="card movie-card">
-            <img src={ poster } className="card-img-top" alt="..." />
+            <span className="rating-label">{ rating }</span>
+            <div className="card-img-top">
+                <img src={ poster } alt="..." />
+            </div>
             <div className="card-body">
                 <h5 className="card-title">{ title }</h5>
                 <p className="card-text">{ year }, { genres }</p>

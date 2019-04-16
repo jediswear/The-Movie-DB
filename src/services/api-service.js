@@ -64,6 +64,7 @@ export default class ApiService {
 
         const list = await this._transformMovieData(res.results)
 
+        console.log(await this._transformMovieData(res.results));
         return list
     }
 
@@ -146,19 +147,32 @@ export default class ApiService {
         }
 
 
-        let formattedData = movies.map(({ id, title, release_date, genres, genre_ids, poster_path}) => {
+        let formattedData = movies.map((movie) => {
 
+            console.log(movie);
+
+            let { id, title, release_date, genres, genre_ids, poster_path, vote_average, overview} = movie
+
+            /**
+             * если нет списка жанров достаем их из id
+             * */
             if(!genres){
                 genres = this.getGenreNames(...genre_ids)
                 genres = genres.join(', ')
+            } else {
+                genres = genres.map(({ name }) => name).join(', ')
             }
+
+            console.log(genres);
 
             return {
                 id,
-                    title,
-                    year: moment(release_date).format('YYYY'),
-                    genres,
-                    poster: this._getPosterPath(poster_path)
+                title,
+                year: moment(release_date).format('YYYY'),
+                genres,
+                poster: this._getPosterPath(poster_path),
+                rating: vote_average,
+                overview
             }
         })
 

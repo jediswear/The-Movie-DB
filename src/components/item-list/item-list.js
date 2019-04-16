@@ -48,7 +48,7 @@ export default class ItemList extends Component {
         })
 
         return (
-            <div className="col-8">
+            <div className="col-7">
                 <ul className="list-group">
                     { movies }
                 </ul>

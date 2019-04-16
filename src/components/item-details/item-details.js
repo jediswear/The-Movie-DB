@@ -31,6 +31,7 @@ export default class ItemDetails extends Component {
         this.api
             .getById(itemId)
             .then(movie => {
+
                 this.setState({
                     movie,
                     selected: itemId
@@ -41,9 +42,8 @@ export default class ItemDetails extends Component {
 
     render(){
 
-        const { movie: { id, title, year, genres, poster }, selected } = this.state
 
-        console.log(selected);
+        const { movie: { id, title, year, genres, poster, overview }, selected } = this.state
 
         if (!selected){
             return(
@@ -52,16 +52,15 @@ export default class ItemDetails extends Component {
         }
 
         return (
-            <div className="col-4 details-card">
+            <div className="col-5 details-card">
                 <div className="card mb-3">
-                    <h3 className="card-header">{ title }</h3>
+                    <h3 className="card-header">{ title } ({ year })</h3>
                     <div className="card-body">
-                        <h5 className="card-title">Special title treatment</h5>
-                        <h6 className="card-subtitle text-muted">Support card subtitle</h6>
+                        <h6 className="card-subtitle text-muted">{ genres }</h6>
                     </div>
                     <img className="card-image" src={ poster } alt="Card image" />
                     <div className="card-body">
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p className="card-text">{ overview }</p>
                     </div>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">Cras justo odio</li>

@@ -1,0 +1,20 @@
+.list-group{
+    li{
+        transition: 0.3s background;
+
+        &:hover{
+            color: #ffffff;
+            background: #081c24;
+        }
+    }
+}
+
+.body{
+    padding-top: 20px;
+    background: #ffffff;
+}
+
+.badge{
+    color: #ffffff;
+    background: #0b9a51;
+}
