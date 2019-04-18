@@ -56,16 +56,36 @@ export default class ApiService {
         return names
     }
 
-    getNowPlaying = async (amount = 4) => {
+    getNowPlaying = async () => {
         const params = {
             region: 'UA'
         }
         const res = await this.getResource('movie/now_playing', params)
+        return await this._transformMovieData(res.results)
+    }
 
-        const list = await this._transformMovieData(res.results)
+    getTopRated = async () => {
+        const params = {
+            region: 'UA'
+        }
+        const res = await this.getResource('movie/top_rated', params)
+        return await this._transformMovieData(res.results)
+    }
 
-        console.log(await this._transformMovieData(res.results));
-        return list
+    getPopular = async () => {
+        const params = {
+            region: 'UA'
+        }
+        const res = await this.getResource('movie/popular', params)
+        return await this._transformMovieData(res.results)
+    }
+
+    getUpcoming = async () => {
+        const params = {
+            region: 'UA'
+        }
+        const res = await this.getResource('movie/upcoming', params)
+        return await this._transformMovieData(res.results)
     }
 
 
@@ -149,8 +169,6 @@ export default class ApiService {
 
         let formattedData = movies.map((movie) => {
 
-            console.log(movie);
-
             let { id, title, release_date, genres, genre_ids, poster_path, vote_average, overview} = movie
 
             /**
@@ -162,8 +180,6 @@ export default class ApiService {
             } else {
                 genres = genres.map(({ name }) => name).join(', ')
             }
-
-            console.log(genres);
 
             return {
                 id,

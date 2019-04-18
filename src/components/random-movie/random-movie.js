@@ -18,10 +18,10 @@ export default class RandomMovie extends Component {
     }
 
     updateMovie(amount = 6) {
-        this.api
-            .getNowPlaying()
-            .then(list => {
+        const { getData } = this.props
 
+        getData()
+            .then(list => {
                 this.setState({
                     movies: list.splice(0, amount),
                     loaded: true
@@ -39,12 +39,19 @@ export default class RandomMovie extends Component {
     }
 
     componentDidMount(){
-        setTimeout(() => {this.updateMovie()}, 2000)
+
+        const delay = Math.floor(Math.random()*2000)
+
+        console.log(delay);
+
+        setTimeout(() => {this.updateMovie()}, delay)
     }
 
     render(){
 
         const { loaded, movies } = this.state
+
+        const { category } = this.props
 
         const moviesCards = movies.map(movie => {
 
@@ -59,7 +66,7 @@ export default class RandomMovie extends Component {
 
         return(
             <React.Fragment>
-                <h6>Now in theatres:</h6>
+                <h6>{ category  }</h6>
                 <div className="row top-block">
                     {loaded ? moviesCards : <Loader/>}
                 </div>

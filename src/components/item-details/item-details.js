@@ -24,6 +24,10 @@ export default class ItemDetails extends Component {
         }
     }
 
+    componentDidMount(){
+        this.updateItem()
+    }
+
     updateItem(){
 
         const { itemId } = this.props
@@ -41,7 +45,6 @@ export default class ItemDetails extends Component {
 
 
     render(){
-
 
         const { movie: { id, title, year, genres, poster, overview }, selected } = this.state
 

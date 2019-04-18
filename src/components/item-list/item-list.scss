@@ -1,0 +1,11 @@
+.list-menu{
+    li{
+        transition: 0.3s background;
+
+        &:hover{
+            color: #ffffff;
+            background: #081c24;
+            cursor: pointer;
+        }
+    }
+}

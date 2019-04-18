@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Loader from '../loader'
+import './item-list.scss'
 
 export default class ItemList extends Component {
 
@@ -49,7 +50,7 @@ export default class ItemList extends Component {
 
         return (
             <div className="col-7">
-                <ul className="list-group">
+                <ul className="list-group list-menu">
                     { movies }
                 </ul>
             </div>
