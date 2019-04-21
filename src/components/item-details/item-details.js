@@ -46,7 +46,7 @@ export default class ItemDetails extends Component {
 
     render(){
 
-        const { movie: { id, title, year, genres, poster, overview }, selected } = this.state
+        const { movie: { title, year, genres, poster, overview }, selected } = this.state
 
         if (!selected){
             return(
@@ -61,7 +61,7 @@ export default class ItemDetails extends Component {
                     <div className="card-body">
                         <h6 className="card-subtitle text-muted">{ genres }</h6>
                     </div>
-                    <img className="card-image" src={ poster } alt="Card image" />
+                    <img className="card-image" src={ poster } alt="Card" />
                     <div className="card-body">
                         <p className="card-text">{ overview }</p>
                     </div>

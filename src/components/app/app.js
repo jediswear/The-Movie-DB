@@ -1,17 +1,33 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import { withApiService } from '../hoc'
 
 import Header from '../header'
-import ItemList from '../item-list'
-import ItemDetails from '../item-details'
-import MovieCategory from '../random-movie'
+// import ItemList from '../item-list'
+// import ItemDetails from '../item-details'
+// import MovieCategory from '../movie-categorie'
+import { HomePage, CardPage } from '../pages'
 import './app.scss'
 
-import ApiService from "../../services/api-service";
+// import ApiService from "../../services/api-service";
 
-export default class App extends Component {
+const App  = () => {
 
-    api = new ApiService()
+    return (
+        <React.Fragment>
+            <Header title="The Movie DB"/>
+            <div className="container">
+                <Switch>
+                    <Route path="/" component={ HomePage } exact />
+                    <Route path="/card" component={ CardPage } />
+                </Switch>
+            </div>
+        </React.Fragment>
+    )
+
+
+
+    /*api = new ApiService()
 
     state = {
         selectedItem: null
@@ -30,7 +46,16 @@ export default class App extends Component {
 
     render(){
 
-        const { selectedItem } = this.state
+        const itemList = <ItemList
+            onSelected={this.onItemSelected}
+            getData={this.api.getPopular}
+        >
+            {({title, vote_average}) => (
+                <React.Fragment>
+                    {title}<span className="badge badge-pill">{vote_average}</span>
+                </React.Fragment>)}
+        </ItemList>
+
         return(
             <React.Fragment>
                 <Router>
@@ -53,15 +78,7 @@ export default class App extends Component {
                 </Router>
             </React.Fragment>
         )
-
-        const itemList = <ItemList
-            onSelected={this.onItemSelected}
-            getData={this.api.getPopular}
-        >
-            {({title, vote_average}) => (
-            <React.Fragment>
-                {title}<span className="badge badge-pill">{vote_average}</span>
-            </React.Fragment>)}
-        </ItemList>
-    }
+    }*/
 }
+
+export default withApiService()(App)

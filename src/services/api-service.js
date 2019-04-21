@@ -27,11 +27,6 @@ export default class ApiService {
         return this._transformMovieData(res)
     }
 
-    getPopular = async () => {
-        const res = await this.getResource('movie/popular')
-        return await res.results
-    }
-
     async getGenres(){
         const res = await this.getResource('genre/movie/list')
         window.localStorage.allGenres = JSON.stringify(res.genres)
@@ -103,21 +98,21 @@ export default class ApiService {
     //     this.registerToken()
     // }
 
-    async newSession(){
+/*    async newSession(){
 
-        /*const obj = {
+        const obj = {
             method: 'POST',
             headers: JSON.stringify({
                 'request_token': window.localStorage.request_token
             })
-        }*/
+        }
 
         const res = await fetch(`${this._baseUrl}authentication/session/new?api_key=${this._apiKey}`)
-        /*res.json()
+        res.json()
             .then(res => {
                 console.log(res);
-            })*/
-    }
+            })
+    }*/
 
     _objectToParams(obj) {
         const keys = Object.keys(obj)

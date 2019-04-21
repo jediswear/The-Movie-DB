@@ -60,8 +60,6 @@ export default class ItemList extends Component {
 
 const Item = ({ movie, renderItem }) => {
 
-    const { title, vote_average } = movie
-
     return(
         <React.Fragment>
             { renderItem(movie) }

@@ -1,15 +1,12 @@
 import React from 'react'
-import ApiService from '../../services/api-service'
 import './header.scss'
 
 const Header = ({ title }) => {
 
-    const api = new ApiService()
-
     return (
         <div className="header">
             <nav className="container navbar navbar-expand-lg navbar-light">
-                <a className="navbar-brand" href="#">{ title }</a>
+                <a className="navbar-brand" href="/">{ title }</a>
                 {/*<button type="button" className="btn btn-primary" onClick={ () => api.getToken() }>Get token</button>*/}
                 {/*<button type="button" className="btn btn-primary" onClick={ () => api.registerToken() }>Register</button>*/}
                 {/*<button type="button" className="btn btn-primary" onClick={ () => api.newSession() }>New session</button>*/}
