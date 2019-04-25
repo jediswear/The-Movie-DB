@@ -19,7 +19,10 @@ const App  = () => {
             <div className="container">
                 <Switch>
                     <Route path="/" component={ HomePage } exact />
-                    <Route path="/card" component={ CardPage } />
+                    <Route path="/popular" component={ CardPage } />
+                    <Route path="/top_rated" component={ CardPage } />
+                    <Route path="/now_playing" component={ CardPage } />
+                    <Route path="/upcoming" component={ CardPage } />
                 </Switch>
             </div>
         </React.Fragment>

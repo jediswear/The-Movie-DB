@@ -1,25 +1,33 @@
-const getMovieList = (moviesData) => {
+const moviesRequested = () => {
     return {
-        type: 'GET_MOVIE_COLLECTION',
-        payload: moviesData
+        type: 'FETCH_MOVIES_REQUEST'
     }
 }
 
-const moviesRequested = () => {
+const getMovies = (moviesData) => {
     return {
-        type: 'MOVIES_REQUESTED'
+        type: 'FETCH_MOVIES_SUCCESS',
+        payload: moviesData
     }
 }
 
 const moviesError = (error) => {
     return {
-        type: 'MOVIES_ERROR',
+        type: 'FETCH_MOVIES_FAILURE',
         payload: error
     }
 }
 
+const getMoviesList = (moviesData) => {
+    return {
+        type: 'FETCH_MOVIES_LIST_SUCCESS',
+        payload: moviesData
+    }
+}
+
 export {
-    getMovieList,
+    getMovies,
     moviesRequested,
-    moviesError
+    moviesError,
+    getMoviesList
 }

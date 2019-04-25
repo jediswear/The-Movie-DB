@@ -1,26 +1,37 @@
-.header{
+.header {
     background: #081c24;
 
-    .navbar-brand{
+    .navbar-brand {
         font-weight: 700;
         color: #01d277;
         transition: .3s;
 
-        &:hover{
+        &:hover {
             color: #ffffff;
         }
     }
 
-    .search-field{
+    .navbar-nav {
+
+        .nav-link {
+            transition: .3s;
+
+            &:hover, &:focus {
+                color: #01d277;
+            }
+        }
+    }
+
+    .search-field {
         border: none;
     }
 
-    .search-btn{
+    .search-btn {
         background: #082931;
         border: none;
 
-        &:hover{
-            background: #4d0738;
+        &:hover {
+            background: #01d277;
         }
     }
 }

@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import withApiService from '../hoc/with-api-service'
+import { getMoviesList } from '../../actions'
 import Loader from '../loader'
 import './item-list.scss'
 
-export default class ItemList extends Component {
-
-    state = {
-        list: []
-    }
+class ItemListContainer extends Component {
 
     getList(){
-        const { getData } = this.props
+        const { apiService, getMoviesList } = this.props
 
-        getData()
+        apiService.getPopular()
             .then(res => {
-                this.setState({
-                    list: res
-                })
+               getMoviesList(res)
             })
     }
 
@@ -25,44 +22,67 @@ export default class ItemList extends Component {
 
     render(){
 
-        const { list } = this.state
-        const { onSelected } = this.props
-        const content = (item) => this.props.children(item)
+        const { list, onSelected } = this.props
 
         if (list.length === 0){
             return (
-                    <div className="col-8">
+                    <div className="col-7">
                         <Loader/>
                     </div>
                 )
         }
 
-        const movies = list.map(movie => {
-
-            const { id } = movie
-
-            return(
-                <li className="list-group-item d-flex justify-content-between align-items-center" key={ id } onClick={ () => onSelected(id) }>
-                    <Item movie={ movie } renderItem={ (movie) => content(movie) } />
-                </li>
-            )
-        })
-
-        return (
-            <div className="col-7">
-                <ul className="list-group list-menu">
-                    { movies }
-                </ul>
-            </div>
+        return(
+            <ItemList {...this.props} />
         )
     }
 }
 
-const Item = ({ movie, renderItem }) => {
+const ItemList = ({ list, onSelected }) => {
+    const movies = list.map(movie => {
+
+        const { id } = movie
+
+        return(
+            <li className="list-group-item d-flex justify-content-between align-items-center" key={ id } onClick={ () => onSelected(id) }>
+                <Item movie={ movie }/>
+            </li>
+        )
+    })
+
+    return (
+        <div className="col-7">
+            <ul className="list-group list-menu">
+                { movies }
+            </ul>
+        </div>
+    )
+}
+
+const Item = ({ movie }) => {
+
+    const { title, rating } = movie
 
     return(
         <React.Fragment>
-            { renderItem(movie) }
+            {title}<span className="badge badge-pill">{rating}</span>
         </React.Fragment>
     )
 }
+
+const mapStateToProps = (state) => {
+
+    const { list } = state
+
+    return {
+        list
+    }
+}
+
+const mapDispatchToProps = {
+    getMoviesList
+}
+
+export default withApiService()(
+    connect(mapStateToProps, mapDispatchToProps)(ItemListContainer)
+)

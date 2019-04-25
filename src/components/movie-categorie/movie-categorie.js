@@ -2,20 +2,24 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { withApiService } from '../hoc'
-import { getMovieList, moviesRequested, moviesError } from '../../actions'
+import { getMovies, moviesRequested, moviesError } from '../../actions'
 
 import Loader from '../loader'
 import ErrorIndicator from '../error-indicator'
 import './movie-categorie.scss'
 
-class MovieCategory extends Component {
+class MovieCategoryContainer extends Component {
 
-    updateMovie(amount = 6) {
+    updateMovie() {
 
         /**
          * receive data
          * */
-        const { apiService, moviesRequested, getMovieList, moviesError } = this.props
+        const {
+            apiService,
+            moviesRequested,
+            getMovies,
+            moviesError } = this.props
 
         /**
          * turn loaded state to false
@@ -27,7 +31,7 @@ class MovieCategory extends Component {
          * */
         apiService.getPopular()
             .then(res => {
-                getMovieList(res)
+                getMovies(res)
             })
             .catch((err) => moviesError(err))
     }
@@ -40,7 +44,13 @@ class MovieCategory extends Component {
     }
 
     render(){
-        const { loaded, movies, category, hasError } = this.props
+        const { loaded, movies, title, hasError } = this.props
+
+        if(!loaded){
+            return (
+                <Loader/>
+            )
+        }
 
         if (hasError){
             return(
@@ -48,28 +58,33 @@ class MovieCategory extends Component {
             )
         }
 
-        const moviesCards = movies.map(movie => {
-            const { id } = movie
-
-            return(
-                <div className="col-lg-2 col-md-4 col-sm-6" key={ id }>
-                    <MovieContent movie={ movie } />
-                </div>
-            )
-        })
-
         return(
-            <React.Fragment>
-                <h6>{ category  }</h6>
-                <div className="row top-block">
-                    {loaded ? moviesCards : <Loader/>}
-                </div>
-            </React.Fragment>
-        )
+            <MovieCategory movies={movies} title={title} />
+            )
     }
 }
 
-const MovieContent = ({ movie }) => {
+const MovieCategory = ({ movies, title }) => {
+
+    const movieCards = movies.map(movie => {
+        const { id } = movie
+
+        return(
+            <div className="col-lg-2 col-md-4 col-sm-6" key={ id }>
+                <MovieItem movie={ movie } />
+            </div>
+        )
+    })
+
+    return(
+            <div className="row top-block">
+                <h6 className="col-12">{ title }</h6>
+                { movieCards }
+            </div>
+    )
+}
+
+const MovieItem = ({ movie }) => {
 
     const { title, year, genres, poster, rating } = movie
 
@@ -103,10 +118,10 @@ const mapStateToProps = (state) => {
 
 /**
  * what actions we want to use
- * метод обернет getMovieList в bindActionCreators и дейстивие сразу будет передаватся в dispatch
+ * метод обернет getMovies в bindActionCreators и дейстивие сразу будет передаватся в dispatch
  * */
 const mapDispatchToProps = {
-    getMovieList,
+    getMovies,
     moviesRequested,
     moviesError
 }
@@ -119,5 +134,5 @@ export default withApiService()(
     /**
      * for connecting to redux store
      * */
-    connect(mapStateToProps, mapDispatchToProps)(MovieCategory)
+    connect(mapStateToProps, mapDispatchToProps)(MovieCategoryContainer)
 )
