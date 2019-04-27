@@ -1,7 +1,11 @@
-import CardPage from './card-page'
-import HomePage from './home-page'
+import PopularPage from './popular-page'
+import TopRatedPage from './top-rated-page'
+import UpcomingPage from './upcoming-page'
+import NowPlayingPage from './now-playing-page'
 
 export {
-    CardPage,
-    HomePage
+    PopularPage,
+    TopRatedPage,
+    UpcomingPage,
+    NowPlayingPage
 }

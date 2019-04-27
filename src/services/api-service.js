@@ -188,6 +188,11 @@ export default class ApiService {
         })
 
         /**
+         * сортировка по рейтигну
+         * */
+        formattedData = formattedData.sort((a, b) => (a.rating - b.rating)).reverse()
+
+        /**
          * если длинна масива 1 возвращает обьект фильма, иначе массив фильмов
          * */
         return formattedData.length === 1 ? formattedData[0] : formattedData

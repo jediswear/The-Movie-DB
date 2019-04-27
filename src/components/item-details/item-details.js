@@ -1,24 +1,11 @@
 import React, { Component } from 'react'
-import ApiService from "../../services/api-service";
+import { withApiService } from '../hoc'
+import { connect } from "react-redux"
 import './item-details.scss'
 
-export default class ItemDetails extends Component {
-
-    api = new ApiService()
-
-    state = {
-        selected: null,
-        movie: {
-            id: null,
-            title: null,
-            year: null,
-            genres: null,
-            poster: null,
-        }
-    }
+class ItemDetailsContainer extends Component {
 
     componentDidUpdate(prevProps, prevState){
-
         if (prevProps !== this.props){
             this.updateItem()
         }
@@ -29,56 +16,72 @@ export default class ItemDetails extends Component {
     }
 
     updateItem(){
+        const { selectedId:itemId, apiService, selectedMovie } = this.props
 
-        const { itemId } = this.props
+        if (!itemId){
+            return
+        }
 
-        this.api
+        apiService
             .getById(itemId)
             .then(movie => {
-
-                this.setState({
-                    movie,
-                    selected: itemId
-                })
+                selectedMovie(movie)
             })
     }
 
 
     render(){
 
-        const { movie: { title, year, genres, poster, overview }, selected } = this.state
-
-        if (!selected){
-            return(
-                <div></div>
-            )
-        }
+        const { selectedMovie } = this.props
 
         return (
-            <div className="col-5 details-card">
-                <div className="card mb-3">
-                    <h3 className="card-header">{ title } ({ year })</h3>
-                    <div className="card-body">
-                        <h6 className="card-subtitle text-muted">{ genres }</h6>
-                    </div>
-                    <img className="card-image" src={ poster } alt="Card" />
-                    <div className="card-body">
-                        <p className="card-text">{ overview }</p>
-                    </div>
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item">Cras justo odio</li>
-                        <li className="list-group-item">Dapibus ac facilisis in</li>
-                        <li className="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                    <div className="card-body">
-                        <a href="#" className="card-link">Card link</a>
-                        <a href="#" className="card-link">Another link</a>
-                    </div>
-                    <div className="card-footer text-muted">
-                        2 days ago
-                    </div>
-                </div>
-            </div>
+            <ItemDetails movie={ selectedMovie }/>
         )
     }
 }
+
+const ItemDetails = ({ movie }) => {
+
+    if (!movie){
+        return <div></div>
+    }
+
+    const { title, year, genres, poster, overview } = movie
+
+     return (
+         <div className="col-5 details-card">
+             <div className="card mb-3">
+                 <h3 className="card-header">{ title } ({ year })</h3>
+                 <div className="card-body">
+                     <h6 className="card-subtitle text-muted">{ genres }</h6>
+                 </div>
+                 <img className="card-image" src={ poster } alt="Card" />
+                 <div className="card-body">
+                     <p className="card-text">{ overview }</p>
+                 </div>
+                 {/*<ul className="list-group list-group-flush">
+                     <li className="list-group-item">Cras justo odio</li>
+                     <li className="list-group-item">Dapibus ac facilisis in</li>
+                     <li className="list-group-item">Vestibulum at eros</li>
+                 </ul>
+                 <div className="card-body">
+                     <a href="#" className="card-link">Card link</a>
+                     <a href="#" className="card-link">Another link</a>
+                 </div>
+                 <div className="card-footer text-muted">
+                     2 days ago
+                 </div>*/}
+             </div>
+         </div>
+     )
+}
+
+const mapStateToProps = (state) => {
+    const { selectedMovie } = state
+
+    return {
+        selectedMovie
+    }
+}
+
+export default withApiService()(connect(mapStateToProps)(ItemDetailsContainer))

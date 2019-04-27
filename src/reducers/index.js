@@ -2,10 +2,13 @@ const initialState = {
     movies: [],
     loaded: false,
     hasError: null,
-    list: []
+    list: [],
+    selectedId: null,
+    selectedMovie: null
 }
 
 const reducer = (state = initialState, action) => {
+
 
     const { type, payload } = action
 
@@ -37,6 +40,17 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 list: payload
+            }
+        case 'SELECTED_ITEM_ID':
+            return {
+                ...state,
+                selectedId: payload
+            }
+        case 'SELECTED_MOVIE':
+
+            return {
+                ...state,
+                selectedMovie: payload
             }
         default:
             return state

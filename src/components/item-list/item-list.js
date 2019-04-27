@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import withApiService from '../hoc/with-api-service'
-import { getMoviesList } from '../../actions'
+import { getMoviesList, selectedId, getSelectedMovie } from '../../actions'
 import Loader from '../loader'
 import './item-list.scss'
 
@@ -16,13 +16,23 @@ class ItemListContainer extends Component {
             })
     }
 
+    getListItem = (id) => {
+
+        const { apiService, getSelectedMovie } = this.props
+
+        apiService.getById(id)
+            .then(movie => {
+                getSelectedMovie(movie)
+            })
+    }
+
     componentDidMount(){
         setTimeout(() => this.getList(), 1000)
     }
 
     render(){
 
-        const { list, onSelected } = this.props
+        const { list } = this.props
 
         if (list.length === 0){
             return (
@@ -33,7 +43,7 @@ class ItemListContainer extends Component {
         }
 
         return(
-            <ItemList {...this.props} />
+            <ItemList {...this.props} onSelected={(id) => this.getListItem(id)} />
         )
     }
 }
@@ -72,15 +82,18 @@ const Item = ({ movie }) => {
 
 const mapStateToProps = (state) => {
 
-    const { list } = state
+    const { list, selectedMovie } = state
 
     return {
-        list
+        list,
+        selectedMovie
     }
 }
 
 const mapDispatchToProps = {
-    getMoviesList
+    getMoviesList,
+    selectedId,
+    getSelectedMovie
 }
 
 export default withApiService()(

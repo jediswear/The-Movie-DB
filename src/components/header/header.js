@@ -15,16 +15,13 @@ const Header = ({ title }) => {
                 <div className="collapse navbar-collapse justify-content-end" id="navbarColor03">
 
                 <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <Link className="nav-link" to="/now_playing">Now playing<span className="sr-only">(current)</span></Link>
+                        <li className="nav-item" id="nav-popular">
+                            <Link className="nav-link" to="/popular">Popular<span className="sr-only">(current)</span></Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/popular">Popular</Link>
-                        </li>
-                        <li className="nav-item">
+                        <li className="nav-item" id="nav-top">
                             <Link className="nav-link" to="/top_rated">Top rated</Link>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item" id="nav-upcoming">
                             <Link className="nav-link" to="upcoming">Upcoming</Link>
                         </li>
                     </ul>

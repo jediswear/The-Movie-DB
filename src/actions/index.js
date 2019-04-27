@@ -25,9 +25,26 @@ const getMoviesList = (moviesData) => {
     }
 }
 
+const selectedId = (id) => {
+    return {
+        type: 'SELECTED_ITEM_ID',
+        payload: id
+    }
+}
+
+const getSelectedMovie = (movie) => {
+
+    return {
+        type: 'SELECTED_MOVIE',
+        payload: movie
+    }
+}
+
 export {
     getMovies,
     moviesRequested,
     moviesError,
-    getMoviesList
+    getMoviesList,
+    selectedId,
+    getSelectedMovie
 }

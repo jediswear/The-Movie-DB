@@ -1,16 +1,19 @@
 import React from 'react'
 import ItemList from '../item-list'
+import ItemDetails from '../item-details'
 import MovieCategory from '../movie-categorie'
 
-const CardPage = ()  => {
+const NowPlayingPage = ({ getData, title })  => {
+
     return(
         <React.Fragment>
-            <MovieCategory title="Now in theatres" />
+            <MovieCategory title={ title ? title : 'No title' } getData={ getData }/>
             <div className="row">
                 <ItemList/>
+                <ItemDetails/>
             </div>
         </React.Fragment>
     )
 }
 
-export default CardPage
+export default NowPlayingPage
