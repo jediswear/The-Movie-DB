@@ -4,7 +4,8 @@ const initialState = {
     hasError: null,
     list: [],
     selectedId: null,
-    selectedMovie: null
+    selectedMovie: null,
+    searchResults: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -51,6 +52,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedMovie: payload
+            }
+        case 'FETCH_MOVIES_SEARCH_REQUEST':
+            return {
+                ...state,
+                searchResults: payload
             }
         default:
             return state

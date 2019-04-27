@@ -22,8 +22,27 @@
         }
     }
 
+    form{
+        position: relative;
+    }
+
     .search-field {
         border: none;
+        transition: 0.3s;
+        width: 200px;
+
+        &:focus{
+            width: 350px;
+        }
+    }
+
+    .search-results{
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 2000;
+        width: 100%;
+        margin-top: 5px;
     }
 
     .search-btn {

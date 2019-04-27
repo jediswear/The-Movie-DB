@@ -83,6 +83,16 @@ export default class ApiService {
         return await this._transformMovieData(res.results)
     }
 
+    getBySearch = async (query) => {
+        const params = {
+            region: 'UA',
+            include_adult: true,
+            query
+        }
+        const res = await this.getResource('search/movie', params)
+        return await this._transformMovieData(res.results)
+    }
+
 
 
     // async registerToken(){
