@@ -8,10 +8,11 @@ import './header.scss'
 
 class Header extends Component {
 
-    onBlur(e){
-
+    onBlur = (e) => {
         e.target.value = ''
+    }
 
+    onSelect = (e) => {
         this.updateSearch('')
     }
 
@@ -45,6 +46,7 @@ class Header extends Component {
                     title={ title }
                     onSearch={ (e) => this.onSearch(e) }
                     onBlur={(e) => this.onBlur(e) }
+                    onSelect={(e) => this.onSelect(e) }
                     searchResults={ searchResults }
                 />
             </div>
@@ -52,10 +54,10 @@ class Header extends Component {
     }
 }
 
-const NavBar = ({ onSearch, onBlur, searchResults, title }) => {
+const NavBar = ({ onSearch, onBlur, onSelect, searchResults, title }) => {
     return(
         <Navbar className="container navbar-dark" expand="lg">
-            <Link className="navbar-brand" to="/" exact>{ title }</Link>
+            <Link className="navbar-brand" to="/">{ title }</Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
@@ -68,21 +70,21 @@ const NavBar = ({ onSearch, onBlur, searchResults, title }) => {
                                  onChange={(e) => onSearch(e) }
                                  onBlur={(e) => onBlur(e)}
                     />
-                    <SearchResults searchResults={ searchResults } />
+                    <SearchResults searchResults={ searchResults } onSelect={onSelect}/>
                 </Form>
             </Navbar.Collapse>
         </Navbar>
     )
 }
 
-const SearchResults = ({ searchResults }) => {
+const SearchResults = ({ searchResults, onSelect }) => {
 
     const items = searchResults.map((item) => {
 
         const { id } = item
 
         return (
-            <li className="list-group-item d-flex justify-content-between align-items-center" key={ id }>
+            <li className="list-group-item d-flex justify-content-between align-items-center" key={ id } onClick={onSelect}>
                 <ListItem movie={ item }/>
             </li>
         )
@@ -97,15 +99,13 @@ const SearchResults = ({ searchResults }) => {
     )
 }
 
-const ListItem = ({ movie: { title, rating } }) => {
-
-
+const ListItem = ({ movie: { title, rating, id } }) => {
 
     return (
-        <React.Fragment>
+        <Link className="list-link" to={`/movie/${id}`} >
             { title }
             <span className="badge badge-primary badge-pill">{ rating }</span>
-        </React.Fragment>
+        </Link>
     )
 }
 

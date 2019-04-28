@@ -47,6 +47,13 @@ const getMoviesBySearch = (moviesList) => {
     }
 }
 
+const getMovieById = (movie) => {
+    return {
+        type: 'FETCH_MOVIE_BY_ID',
+        payload: movie
+    }
+}
+
 export {
     getMovies,
     moviesRequested,
@@ -54,5 +61,6 @@ export {
     getMoviesList,
     selectedId,
     getSelectedMovie,
-    getMoviesBySearch
+    getMoviesBySearch,
+    getMovieById
 }

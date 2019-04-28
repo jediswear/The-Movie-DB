@@ -1,7 +1,22 @@
 .details-card{
+    .card{
+        overflow: hidden;
+    }
+
     .card-image{
         object-fit: contain;
         width: 100%;
         height: auto;
+    }
+
+    .card-body{
+        .card-text{
+            display: -webkit-box;
+            max-height: 70px;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 }

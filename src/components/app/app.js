@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import { withApiService } from '../hoc'
 
 import Header from '../header'
-import { PopularPage, TopRatedPage, NowPlayingPage, UpcomingPage } from '../pages'
+import { PopularPage, TopRatedPage, NowPlayingPage, UpcomingPage, MoviePage } from '../pages'
 import './app.scss'
 
 const App  = ({ apiService }) => {
@@ -33,6 +33,10 @@ const App  = ({ apiService }) => {
                     <Route
                         path="/upcoming"
                         render={ () => <UpcomingPage getData={ () => apiService.getUpcoming() } title="Upcoming movies" /> }
+                    />
+                    <Route
+                        path="/movie/:id"
+                        component={MoviePage}
                     />
                 </Switch>
             </div>

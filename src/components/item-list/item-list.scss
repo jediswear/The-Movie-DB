@@ -6,25 +6,28 @@
 
 .list-menu{
     li{
+        padding: 0;
         transition: 0.3s;
 
-        &:after{
-            content: '';
-            position: absolute;
-            left: 100%;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 6px 0 6px 6px;
-            border-color: transparent transparent transparent #081c24;
+        .list-link{
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            color: black;
             transition: .3s;
-            opacity: 0;
+
+            &:hover{
+                color: #ffffff;
+                padding-left: 25px;
+                text-decoration: none;
+            }
         }
 
         &:hover{
             position: relative;
-            padding-left: 25px;
-            color: #ffffff;
             background: #081c24;
             cursor: pointer;
             transition: .3s;
@@ -32,13 +35,12 @@
 
         &.active{
             position: relative;
-            padding-left: 25px;
-            color: #ffffff;
             background: #081c24;
             cursor: pointer;
 
-            &:after{
-                opacity: 1;
+            .list-link{
+                padding-left: 25px;
+                color: #ffffff;
             }
         }
     }

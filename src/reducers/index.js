@@ -5,7 +5,8 @@ const initialState = {
     list: [],
     selectedId: null,
     selectedMovie: null,
-    searchResults: []
+    searchResults: [],
+    movieById: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -40,7 +41,7 @@ const reducer = (state = initialState, action) => {
         case 'FETCH_MOVIES_LIST_SUCCESS':
             return {
                 ...state,
-                list: payload
+                list: payload.slice(6, payload.length)
             }
         case 'SELECTED_ITEM_ID':
             return {
@@ -60,6 +61,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 searchResults: payload.slice(0, maxSearchRes)
+            }
+        case 'FETCH_MOVIE_BY_ID':
+            return {
+                ...state,
+                movieById: payload
             }
         default:
             return state

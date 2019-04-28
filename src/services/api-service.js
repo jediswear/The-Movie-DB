@@ -175,7 +175,30 @@ export default class ApiService {
 
         let formattedData = movies.map((movie) => {
 
-            let { id, title, release_date, genres, genre_ids, poster_path, vote_average, overview} = movie
+            let { id,
+                title,
+                release_date,
+                genres,
+                genre_ids,
+                poster_path,
+                vote_average,
+                overview,
+                runtime,
+                production_countries,
+            } = movie
+
+            /**
+             * list of countries
+             * */
+            let countries  = ''
+            if (production_countries){
+                production_countries.forEach( country => { countries += `${ country.name }, ` } )
+                countries = countries.slice(0, countries.length - 2)
+            }
+
+
+            let duration = (runtime/60).toFixed(2).replace(',', ':')
+            duration = `${duration}h`
 
             /**
              * если нет списка жанров достаем их из id
@@ -194,7 +217,9 @@ export default class ApiService {
                 genres,
                 poster: this._getPosterPath(poster_path),
                 rating: vote_average,
-                overview
+                overview,
+                duration,
+                countries,
             }
         })
 

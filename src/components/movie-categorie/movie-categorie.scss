@@ -7,17 +7,19 @@
     cursor: pointer;
     transition: .3s;
     color: #000000;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.15);
     background: #ffffff;
 
     &:hover{
+        color: #000000;
+        text-decoration: none;
+        transform: scale(1.05);
+
         .card-img-top{
             &:after{
                 opacity: 0;
             }
         }
 
-        top: -5px;
     }
 
     .rating-label {

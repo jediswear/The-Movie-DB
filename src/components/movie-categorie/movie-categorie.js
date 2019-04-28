@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { Link } from 'react-router-dom'
 import { withApiService } from '../hoc'
 import { getMovies, moviesRequested, moviesError, getSelectedMovie } from '../../actions'
 
@@ -9,16 +10,6 @@ import ErrorIndicator from '../error-indicator'
 import './movie-categorie.scss'
 
 class MovieCategoryContainer extends Component {
-
-    getItem = (id) => {
-        const { apiService, getSelectedMovie } = this.props
-
-        apiService
-            .getById(id)
-            .then(movie => {
-                getSelectedMovie(movie)
-            })
-    }
 
     updateMovie() {
 
@@ -71,19 +62,19 @@ class MovieCategoryContainer extends Component {
         }
 
         return(
-            <MovieCategory movies={movies} title={title} onSelected={this.getItem} />
+            <MovieCategory movies={movies} title={title} />
             )
     }
 }
 
-const MovieCategory = ({ movies, title, onSelected }) => {
+const MovieCategory = ({ movies, title }) => {
 
     const movieCards = movies.map(movie => {
         const { id } = movie
 
         return(
             <div className="col-lg-2 col-md-4 col-sm-6" key={ id }>
-                <MovieItem movie={ movie } onSelected={onSelected} />
+                <MovieItem movie={ movie } />
             </div>
         )
     })
@@ -96,12 +87,12 @@ const MovieCategory = ({ movies, title, onSelected }) => {
     )
 }
 
-const MovieItem = ({ movie, onSelected }) => {
+const MovieItem = ({ movie }) => {
 
     const { id, title, year, genres, poster, rating } = movie
 
     return(
-        <div className="card movie-card" onClick={ () => onSelected(id) }>
+        <Link className="card movie-card" to={ `/movie/${id}` }>
             <span className="rating-label">{ rating }</span>
             <div className="card-img-top">
                 <img src={ poster } alt="..." />
@@ -110,7 +101,7 @@ const MovieItem = ({ movie, onSelected }) => {
                 <h5 className="card-title">{ title }</h5>
                 <p className="card-text">{ year }, { genres }</p>
             </div>
-        </div>
+        </Link>
     )
 }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import withApiService from '../hoc/with-api-service'
 import { getMoviesList, selectedId, getSelectedMovie } from '../../actions'
+import { Link } from "react-router-dom";
 import Loader from '../loader'
 import './item-list.scss'
 
@@ -66,7 +67,7 @@ const ItemList = ({ list, onSelected }) => {
         return(
             <li className="list-group-item d-flex justify-content-between align-items-center"
                 key={ id }
-                onClick={ (e) => {
+                onMouseOver={ (e) => {
                     onSelected(id)
                     selectActive(e)
                 } }>
@@ -76,7 +77,7 @@ const ItemList = ({ list, onSelected }) => {
     })
 
     return (
-        <div className="col-md-7 col-sm-12">
+        <div className="col-md-8 col-sm-12">
             <ul className="list-group list-menu">
                 { movies }
             </ul>
@@ -86,12 +87,13 @@ const ItemList = ({ list, onSelected }) => {
 
 const Item = ({ movie }) => {
 
-    const { title, rating } = movie
+    const { title, rating, id } = movie
 
     return(
-        <React.Fragment>
+        <Link className="list-link" to={ `/movie/${id}`}>
             {title}<span className="badge badge-pill">{rating}</span>
-        </React.Fragment>
+        </Link>
+
     )
 }
 

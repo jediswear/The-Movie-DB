@@ -49,13 +49,12 @@ const ItemDetails = ({ movie }) => {
     const { title, year, genres, poster, overview } = movie
 
      return (
-         <div className="col-md-5 col-sm-12 details-card">
+         <div className="col-md-4 d-none d-md-block details-card">
              <div className="card mb-3">
-                 <h3 className="card-header">{ title } ({ year })</h3>
+                 <img className="card-image" src={ poster } alt="Card" />
                  <div className="card-body">
                      <h6 className="card-subtitle text-muted">{ genres }</h6>
                  </div>
-                 <img className="card-image" src={ poster } alt="Card" />
                  <div className="card-body">
                      <p className="card-text">{ overview }</p>
                  </div>
