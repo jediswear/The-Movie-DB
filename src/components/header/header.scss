@@ -53,4 +53,10 @@
             background: #01d277;
         }
     }
+
+    .navbar-toggler{
+        &:focus{
+            outline: none;
+        }
+    }
 }

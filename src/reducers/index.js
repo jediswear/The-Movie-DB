@@ -54,9 +54,12 @@ const reducer = (state = initialState, action) => {
                 selectedMovie: payload
             }
         case 'FETCH_MOVIES_SEARCH_REQUEST':
+
+            const maxSearchRes = 10
+
             return {
                 ...state,
-                searchResults: payload
+                searchResults: payload.slice(0, maxSearchRes)
             }
         default:
             return state

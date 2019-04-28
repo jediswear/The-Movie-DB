@@ -49,7 +49,7 @@ const ItemDetails = ({ movie }) => {
     const { title, year, genres, poster, overview } = movie
 
      return (
-         <div className="col-5 details-card">
+         <div className="col-md-5 col-sm-12 details-card">
              <div className="card mb-3">
                  <h3 className="card-header">{ title } ({ year })</h3>
                  <div className="card-body">

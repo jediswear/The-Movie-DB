@@ -1,11 +1,45 @@
+.list-container{
+    .list-menu{
+        margin-bottom: 20px;
+    }
+}
+
 .list-menu{
     li{
-        transition: 0.3s background;
+        transition: 0.3s;
+
+        &:after{
+            content: '';
+            position: absolute;
+            left: 100%;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 6px 0 6px 6px;
+            border-color: transparent transparent transparent #081c24;
+            transition: .3s;
+            opacity: 0;
+        }
 
         &:hover{
+            position: relative;
+            padding-left: 25px;
             color: #ffffff;
             background: #081c24;
             cursor: pointer;
+            transition: .3s;
+        }
+
+        &.active{
+            position: relative;
+            padding-left: 25px;
+            color: #ffffff;
+            background: #081c24;
+            cursor: pointer;
+
+            &:after{
+                opacity: 1;
+            }
         }
     }
 }

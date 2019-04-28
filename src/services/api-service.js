@@ -24,6 +24,7 @@ export default class ApiService {
 
     async getById(id){
         const res = await this.getResource(`movie/${id}`)
+        console.log(res);
         return this._transformMovieData(res)
     }
 

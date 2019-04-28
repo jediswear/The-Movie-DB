@@ -48,20 +48,35 @@ class ItemListContainer extends Component {
     }
 }
 
+const selectActive = (e) => {
+    const selectedItem = document.querySelector('li.active')
+
+    if(selectedItem){
+        selectedItem.classList.remove('active')
+    }
+
+    e.target.classList.add('active')
+}
+
 const ItemList = ({ list, onSelected }) => {
     const movies = list.map(movie => {
 
         const { id } = movie
 
         return(
-            <li className="list-group-item d-flex justify-content-between align-items-center" key={ id } onClick={ () => onSelected(id) }>
+            <li className="list-group-item d-flex justify-content-between align-items-center"
+                key={ id }
+                onClick={ (e) => {
+                    onSelected(id)
+                    selectActive(e)
+                } }>
                 <Item movie={ movie }/>
             </li>
         )
     })
 
     return (
-        <div className="col-7">
+        <div className="col-md-7 col-sm-12">
             <ul className="list-group list-menu">
                 { movies }
             </ul>

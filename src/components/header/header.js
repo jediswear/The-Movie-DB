@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from "react-redux";
 import {withApiService} from "../hoc";
 import { getMoviesBySearch } from '../../actions'
+import { Navbar, Nav, Form, FormControl } from 'react-bootstrap'
 import './header.scss'
 
 class Header extends Component {
@@ -40,51 +41,41 @@ class Header extends Component {
 
         return (
             <div className="header">
-                <nav className="container navbar navbar-expand-lg navbar-dark">
-                    <Link className="navbar-brand" to="/">{ title }</Link>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div className="collapse navbar-collapse justify-content-end" id="navbarColor03">
-
-                        <ul className="navbar-nav mr-auto">
-                            <li className="nav-item" id="nav-popular">
-                                <Link className="nav-link" to="/popular">Popular<span className="sr-only">(current)</span></Link>
-                            </li>
-                            <li className="nav-item" id="nav-top">
-                                <Link className="nav-link" to="/top_rated">Top rated</Link>
-                            </li>
-                            <li className="nav-item" id="nav-upcoming">
-                                <Link className="nav-link" to="upcoming">Upcoming</Link>
-                            </li>
-                        </ul>
-
-                        {/*<button type="button" className="btn btn-primary" onClick={ () => api.getToken() }>Get token</button>*/}
-                        {/*<button type="button" className="btn btn-primary" onClick={ () => api.registerToken() }>Register</button>*/}
-                        {/*<button type="button" className="btn btn-primary" onClick={ () => api.newSession() }>New session</button>*/}
-
-
-                        <form className="form-inline my-2 my-lg-0">
-                            <input className="form-control search-field"
-                                   type="text"
-                                   placeholder="Search"
-                                   onChange={(e) => this.onSearch(e) }
-                                   onBlur={(e) => this.onBlur(e)}
-                            />
-                            <SearchResults searchResults={ searchResults } />
-                            {/*<button className="btn btn-secondary my-2 my-sm-0 search-btn" type="submit">Search</button>*/}
-                        </form>
-                    </div>
-                </nav>
+                <NavBar
+                    title={ title }
+                    onSearch={ (e) => this.onSearch(e) }
+                    onBlur={(e) => this.onBlur(e) }
+                    searchResults={ searchResults }
+                />
             </div>
         )
     }
 }
 
-const SearchResults = ({ searchResults }) => {
+const NavBar = ({ onSearch, onBlur, searchResults, title }) => {
+    return(
+        <Navbar className="container navbar-dark" expand="lg">
+            <Link className="navbar-brand" to="/" exact>{ title }</Link>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                    <Link className="nav-link" to="/popular">Popular</Link>
+                    <Link className="nav-link" to="/top_rated">Top rated</Link>
+                    <Link className="nav-link" to="/upcoming">Upcoming</Link>
+                </Nav>
+                <Form inline>
+                    <FormControl type="text" placeholder="Search" className="search-field"
+                                 onChange={(e) => onSearch(e) }
+                                 onBlur={(e) => onBlur(e)}
+                    />
+                    <SearchResults searchResults={ searchResults } />
+                </Form>
+            </Navbar.Collapse>
+        </Navbar>
+    )
+}
 
-    // console.log(searchResults);
+const SearchResults = ({ searchResults }) => {
 
     const items = searchResults.map((item) => {
 
@@ -99,7 +90,7 @@ const SearchResults = ({ searchResults }) => {
 
     return (
         <div className="search-results">
-            <ul className="list-group">
+            <ul className="list-group list-menu">
                 { items }
             </ul>
         </div>
