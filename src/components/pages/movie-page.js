@@ -47,8 +47,8 @@ class MoviePage extends Component {
 
         return(
             <div id="movie-page" className="row">
-                <div className="col-12 row main-section">
-                    <div className="col-4 main-image">
+                <div className="col-12 main-section">
+                    <div className="col-lg-4 col-md-6 main-image">
                         <div className="trailer-overlay">
                             <i className="material-icons">
                                 play_circle_outline
@@ -58,7 +58,7 @@ class MoviePage extends Component {
                             />
                         </div>
                     </div>
-                    <div className="col-8 main-content">
+                    <div className="col-lg-8 col-md-6 main-content">
                         <h3 className="title">{ title } ({ year })</h3>
                         <h5 className="caption">Country</h5>
                         <p className="country">{ countries }</p>

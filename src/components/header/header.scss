@@ -22,6 +22,10 @@
         }
     }
 
+    #basic-navbar-nav{
+        max-width: 100%;
+    }
+
     form{
         position: relative;
     }
@@ -30,6 +34,7 @@
         border: none;
         transition: 0.3s;
         width: 200px;
+        max-width: 100%;
 
         &:focus{
             width: 350px;
