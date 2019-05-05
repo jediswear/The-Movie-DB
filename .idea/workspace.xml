@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e4f2f5ea-c6af-4f4e-b0f8-5c406212b14f" name="Default" comment="add movie page">
+    <list default="true" id="e4f2f5ea-c6af-4f4e-b0f8-5c406212b14f" name="Default" comment="movie page adaptive">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/header.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/movie-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/movie-page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/movie-page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/movie-page.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,7 +17,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/pages/movie-page.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
+            <state relative-caret-position="720">
               <caret line="49" column="38" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
@@ -32,35 +31,34 @@
         <entry file="file://$PROJECT_DIR$/src/components/pages/movie-page.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
-              <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
+              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
               <folding>
-                <element signature="e#277#1144#0" />
-                <element signature="e#424#581#0" />
-                <element signature="e#445#497#0" />
-                <element signature="e#516#567#0" />
-                <element signature="e#596#940#0" />
-                <element signature="e#957#1134#0" />
-                <element signature="e#1309#1350#0" />
-                <element signature="e#1366#1537#0" />
-                <element signature="e#1480#1527#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/header/header.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-              <folding>
-                <element signature="n#!!block;n#updateSearch#0;n#Header#0" />
+                <element signature="e#30#225#0" />
+                <element signature="e#522#574#0" />
+                <element signature="e#673#1017#0" />
+                <element signature="e#1034#1211#0" />
+                <element signature="e#1246#1649#0" />
+                <element signature="e#1415#1456#0" />
+                <element signature="e#1472#1643#0" />
+                <element signature="e#1586#1633#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/header/header.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/header/header.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
@@ -68,10 +66,16 @@
               <folding>
                 <element signature="e#54#193#0" />
                 <element signature="e#211#356#0" />
-                <element signature="e#366#401#0" />
-                <element signature="e#573#714#0" />
-                <element signature="e#732#852#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="19" column="10" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -79,7 +83,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/item-list/item-list.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
+            <state relative-caret-position="738">
               <caret line="41" column="35" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
             </state>
           </provider>
@@ -173,10 +177,10 @@
         <option value="$PROJECT_DIR$/src/components/item-list/item-list.js" />
         <option value="$PROJECT_DIR$/src/components/item-details/item-details.js" />
         <option value="$PROJECT_DIR$/src/components/item-list/item-list.scss" />
-        <option value="$PROJECT_DIR$/src/components/header/header.js" />
         <option value="$PROJECT_DIR$/src/components/pages/movie-page.js" />
-        <option value="$PROJECT_DIR$/src/components/pages/movie-page.scss" />
         <option value="$PROJECT_DIR$/src/components/header/header.scss" />
+        <option value="$PROJECT_DIR$/src/components/pages/movie-page.scss" />
+        <option value="$PROJECT_DIR$/src/components/header/header.js" />
       </list>
     </option>
   </component>
@@ -188,10 +192,10 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1534" />
-    <option name="y" value="-15" />
-    <option name="width" value="1200" />
-    <option name="height" value="654" />
+    <option name="x" value="170" />
+    <option name="y" value="92" />
+    <option name="width" value="1026" />
+    <option name="height" value="554" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -212,51 +216,7 @@
             <path>
               <item name="the-movie-db" type="b2602c69:ProjectViewProjectNode" />
               <item name="the-movie-db" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-movie-db" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-movie-db" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-movie-db" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-movie-db" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-movie-db" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-movie-db" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="header" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-movie-db" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-movie-db" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="item-list" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-movie-db" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-movie-db" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-movie-db" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-movie-db" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="reducers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="the-movie-db" type="b2602c69:ProjectViewProjectNode" />
-              <item name="the-movie-db" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -318,7 +278,10 @@
       <workItem from="1556352846323" duration="67000" />
       <workItem from="1556353097972" duration="300000" />
       <workItem from="1556353418053" duration="39448000" />
-      <workItem from="1556723367421" duration="649000" />
+      <workItem from="1556723367421" duration="1437000" />
+      <workItem from="1556816531651" duration="713000" />
+      <workItem from="1556825156169" duration="2094000" />
+      <workItem from="1557049605819" duration="3003000" />
     </task>
     <task id="LOCAL-00001" summary="random movie component">
       <created>1555235671237</created>
@@ -383,17 +346,23 @@
       <option name="project" value="LOCAL" />
       <updated>1556461934335</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="movie page adaptive">
+      <created>1556724079142</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1556724079142</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157704000" />
+    <option name="totallyTimeSpent" value="164302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1374" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18532526" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19440243" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -428,7 +397,8 @@
     <MESSAGE value="add search component" />
     <MESSAGE value="add bootstrap-react to project" />
     <MESSAGE value="add movie page" />
-    <option name="LAST_COMMIT_MESSAGE" value="add movie page" />
+    <MESSAGE value="movie page adaptive" />
+    <option name="LAST_COMMIT_MESSAGE" value="movie page adaptive" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/components/app/index.js">
@@ -491,13 +461,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package-lock.json">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/reducer.js" />
     <entry file="file://$PROJECT_DIR$/src/store.js">
@@ -640,13 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="73" selection-start-line="7" selection-start-column="73" selection-end-line="7" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/services/api-service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -746,16 +702,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/item-list/item-list.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="41" column="35" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/pages/movie-page.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
+        <state relative-caret-position="720">
           <caret line="49" column="38" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
@@ -764,30 +713,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/pages/movie-page.scss">
+    <entry file="file://$PROJECT_DIR$/src/components/item-list/item-list.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
-          <folding>
-            <element signature="e#277#1144#0" />
-            <element signature="e#424#581#0" />
-            <element signature="e#445#497#0" />
-            <element signature="e#516#567#0" />
-            <element signature="e#596#940#0" />
-            <element signature="e#957#1134#0" />
-            <element signature="e#1309#1350#0" />
-            <element signature="e#1366#1537#0" />
-            <element signature="e#1480#1527#0" />
-          </folding>
+        <state relative-caret-position="738">
+          <caret line="41" column="35" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/header/header.js">
+    <entry file="file://$PROJECT_DIR$/build/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+        <state relative-caret-position="126">
+          <caret line="7" column="73" selection-start-line="7" selection-start-column="73" selection-end-line="7" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="19" column="10" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/pages/movie-page.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
           <folding>
-            <element signature="n#!!block;n#updateSearch#0;n#Header#0" />
+            <element signature="e#30#225#0" />
+            <element signature="e#522#574#0" />
+            <element signature="e#673#1017#0" />
+            <element signature="e#1034#1211#0" />
+            <element signature="e#1246#1649#0" />
+            <element signature="e#1415#1456#0" />
+            <element signature="e#1472#1643#0" />
+            <element signature="e#1586#1633#0" />
           </folding>
         </state>
       </provider>
@@ -799,9 +761,16 @@
           <folding>
             <element signature="e#54#193#0" />
             <element signature="e#211#356#0" />
-            <element signature="e#366#401#0" />
-            <element signature="e#573#714#0" />
-            <element signature="e#732#852#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/header/header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>

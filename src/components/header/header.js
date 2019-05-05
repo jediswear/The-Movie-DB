@@ -10,6 +10,10 @@ class Header extends Component {
 
     onBlur = (e) => {
         e.target.value = ''
+
+        setTimeout(() => {
+            this.updateSearch('')
+        }, 100)
     }
 
     onSelect = (e) => {
