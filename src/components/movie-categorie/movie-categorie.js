@@ -73,7 +73,7 @@ const MovieCategory = ({ movies, title }) => {
         const { id } = movie
 
         return(
-            <div className="col-lg-2 col-md-4 col-sm-6" key={ id }>
+            <div className="col-lg-6" key={ id }>
                 <MovieItem movie={ movie } />
             </div>
         )
@@ -81,7 +81,7 @@ const MovieCategory = ({ movies, title }) => {
 
     return(
             <div className="row top-block">
-                <h6 className="col-12">{ title }</h6>
+                <h5 className="block-title col-12">{ title }</h5>
                 { movieCards }
             </div>
     )
@@ -89,17 +89,21 @@ const MovieCategory = ({ movies, title }) => {
 
 const MovieItem = ({ movie }) => {
 
-    const { id, title, year, genres, poster, rating } = movie
+    const { id, title, year, genres, poster, rating, overview } = movie
 
     return(
         <Link className="card movie-card" to={ `/movie/${id}` }>
             <span className="rating-label">{ rating }</span>
             <div className="card-img-top">
-                <img src={ poster } alt="..." />
+                <div className="ratio">
+                    <img src={ poster } alt="..." />
+                </div>
             </div>
             <div className="card-body">
                 <h5 className="card-title">{ title }</h5>
-                <p className="card-text">{ year }, { genres }</p>
+                <p className="card-subtitle">{ year }</p>
+                <p className="card-text">{ overview }</p>
+                <div className="more">More...</div>
             </div>
         </Link>
     )
