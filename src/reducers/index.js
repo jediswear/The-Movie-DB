@@ -6,7 +6,9 @@ const initialState = {
     selectedId: null,
     selectedMovie: null,
     searchResults: [],
-    movieById: null
+    movieById: null,
+    currentPage: 1,
+    totalPages: 1
 }
 
 const reducer = (state = initialState, action) => {
@@ -23,7 +25,7 @@ const reducer = (state = initialState, action) => {
                 hasError: null
             }
         case 'FETCH_MOVIES_SUCCESS':
-            const amount = 6
+            const amount = 20
 
             return state = {
                 ...state,
@@ -66,6 +68,16 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 movieById: payload
+            }
+        case 'SET_CURRENT_PAGE':
+            return {
+                ...state,
+                currentPage: payload
+            }
+        case 'SET_TOTAL_PAGES':
+            return {
+                ...state,
+                totalPages: payload
             }
         default:
             return state

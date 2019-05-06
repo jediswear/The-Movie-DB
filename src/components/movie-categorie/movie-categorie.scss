@@ -12,6 +12,7 @@
     transition: .3s;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     border: none;
+    border-radius: 0;
     color: #000000;
     background: #ffffff;
 
@@ -22,9 +23,14 @@
         .card-img-top{
             img{
                 width: 110%;
+                height: 110%;
             }
         }
 
+    }
+
+    @media all and (max-width: 375px){
+        flex-direction: column;
     }
 
     .rating-label {
@@ -63,6 +69,11 @@
         border-radius: 0;
         overflow: hidden;
 
+        @media all and (max-width: 375px){
+            max-width: none;
+            width: 100%;
+        }
+
         .ratio{
             height: 0;
             width: 100%;
@@ -84,8 +95,12 @@
     .card-body {
         position: relative;
         width: 55%;
-        padding: 10px 15px;
+        padding: 10px 15px 40px 15px;
         box-sizing: border-box;
+
+        @media all and (max-width: 375px){
+            width: 100%;
+        }
 
         .card-title {
             font-size: 1rem;

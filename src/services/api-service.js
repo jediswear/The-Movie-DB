@@ -24,7 +24,6 @@ export default class ApiService {
 
     async getById(id){
         const res = await this.getResource(`movie/${id}`)
-        console.log(res);
         return this._transformMovieData(res)
     }
 
@@ -52,36 +51,40 @@ export default class ApiService {
         return names
     }
 
-    getNowPlaying = async () => {
+    getNowPlaying = async (page) => {
         const params = {
-            region: 'UA'
+            region: 'UA',
+            page,
         }
         const res = await this.getResource('movie/now_playing', params)
-        return await this._transformMovieData(res.results)
+        return await this._transformMovieData(res.results, res.total_pages)
     }
 
-    getTopRated = async () => {
+    getTopRated = async (page) => {
         const params = {
-            region: 'UA'
+            region: 'UA',
+            page
         }
         const res = await this.getResource('movie/top_rated', params)
-        return await this._transformMovieData(res.results)
+        return await this._transformMovieData(res.results, res.total_pages)
     }
 
-    getPopular = async () => {
+    getPopular = async (page) => {
         const params = {
-            region: 'UA'
+            region: 'UA',
+            page
         }
         const res = await this.getResource('movie/popular', params)
-        return await this._transformMovieData(res.results)
+        return await this._transformMovieData(res.results, res.total_pages)
     }
 
-    getUpcoming = async () => {
+    getUpcoming = async (page) => {
         const params = {
-            region: 'UA'
+            region: 'UA',
+            page
         }
         const res = await this.getResource('movie/upcoming', params)
-        return await this._transformMovieData(res.results)
+        return await this._transformMovieData(res.results, res.total_pages)
     }
 
     getBySearch = async (query) => {
@@ -154,7 +157,7 @@ export default class ApiService {
      * агрумент массив
      * трансформирует данные массива фильмов
      * */
-    async _transformMovieData(movies){
+    async _transformMovieData(movies, pages){
 
         /**
          * если нет списка id жанров
@@ -216,21 +219,31 @@ export default class ApiService {
                 year: moment(release_date).format('YYYY'),
                 genres,
                 poster: this._getPosterPath(poster_path),
-                rating: vote_average,
+                rating: vote_average === 0 ? 'NR' : vote_average ,
                 overview,
                 duration,
-                countries,
+                countries
             }
         })
 
         /**
          * сортировка по рейтигну
          * */
-        formattedData = formattedData.sort((a, b) => (a.rating - b.rating)).reverse()
+        formattedData = formattedData.sort((a, b) => {
+
+            //для сортировки элементов с рейтингом 'NR'
+            const first = a.rating === 'NR' ? 0 : a.rating
+            const second = b.rating === 'NR' ? 0 : b.rating
+
+            return (first - second)
+        }).reverse()
 
         /**
          * если длинна масива 1 возвращает обьект фильма, иначе массив фильмов
          * */
-        return formattedData.length === 1 ? formattedData[0] : formattedData
+        return {
+            movies: formattedData.length === 1 ? formattedData[0] : formattedData,
+            pages
+        }
     }
 }

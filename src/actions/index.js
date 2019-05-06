@@ -54,6 +54,22 @@ const getMovieById = (movie) => {
     }
 }
 
+const setCurrentPage = (index) => {
+
+    return {
+        type: 'SET_CURRENT_PAGE',
+        payload: index
+    }
+}
+
+const setTotalPages = (amount) => {
+
+    return {
+        type: 'SET_TOTAL_PAGES',
+        payload: amount
+    }
+}
+
 export {
     getMovies,
     moviesRequested,
@@ -62,5 +78,7 @@ export {
     selectedId,
     getSelectedMovie,
     getMoviesBySearch,
-    getMovieById
+    getMovieById,
+    setCurrentPage,
+    setTotalPages
 }

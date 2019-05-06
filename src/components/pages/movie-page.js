@@ -12,8 +12,8 @@ class MoviePage extends Component {
 
         apiService
             .getById(params.id)
-            .then(movie => {
-                getMovieById(movie)
+            .then(res => {
+                getMovieById(res.movies)
             })
     }
 

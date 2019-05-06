@@ -5,15 +5,16 @@ import {withApiService} from "../hoc";
 import { getMoviesBySearch } from '../../actions'
 import { Navbar, Nav, Form, FormControl } from 'react-bootstrap'
 import './header.scss'
+import '../item-list/item-list.scss'
 
 class Header extends Component {
 
     onBlur = (e) => {
         e.target.value = ''
 
-        setTimeout(() => {
+ /*       setTimeout(() => {
             this.updateSearch('')
-        }, 100)
+        }, 100)*/
     }
 
     onSelect = (e) => {
@@ -37,7 +38,7 @@ class Header extends Component {
         apiService
             .getBySearch(query)
             .then(res => {
-                getMoviesBySearch(res)
+                getMoviesBySearch(res.movies)
             })
     }
 

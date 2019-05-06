@@ -1,0 +1,30 @@
+.pagination{
+    width: 100%;
+    justify-content: center;
+    margin: 5px 0 25px 0;
+
+    >*{
+        display: flex;
+        align-items: center;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+
+    .current-page{
+        color: red;
+        padding: 0 5px;
+    }
+
+    .prev-page{
+        i{
+            margin: 3px;
+            transform: scaleX(-1);
+        }
+    }
+
+    .next-page{
+        i{
+            margin: 3px;
+        }
+    }
+}

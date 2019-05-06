@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 import { withApiService } from '../hoc'
-import { getMovies, moviesRequested, moviesError, getSelectedMovie } from '../../actions'
+import { getMovies, moviesRequested, moviesError, getSelectedMovie, setTotalPages, setCurrentPage } from '../../actions'
 
 import Loader from '../loader'
+import Pagination from '../pagination'
 import ErrorIndicator from '../error-indicator'
 import './movie-categorie.scss'
 
@@ -19,22 +20,28 @@ class MovieCategoryContainer extends Component {
         const {
             getMovies,
             moviesError,
-            getData } = this.props
+            getData,
+            setTotalPages } = this.props
 
         /**
          * dispatch action to store
          * */
         getData()
             .then(res => {
-                getMovies(res)
+                setTotalPages(res.pages)
+                getMovies(res.movies)
             })
             .catch((err) => moviesError(err))
     }
 
     componentDidMount(){
 
-        const { moviesRequested } = this.props
+        const { moviesRequested, setCurrentPage } = this.props
 
+        /**
+         * current page to default
+         * */
+        setCurrentPage(1)
         /**
          * turn loaded state to false
          * */
@@ -47,7 +54,7 @@ class MovieCategoryContainer extends Component {
     }
 
     render(){
-        const { loaded, movies, title, hasError } = this.props
+        const { loaded, movies, title, hasError, getData } = this.props
 
         if(!loaded){
             return (
@@ -62,12 +69,12 @@ class MovieCategoryContainer extends Component {
         }
 
         return(
-            <MovieCategory movies={movies} title={title} />
+            <MovieCategory movies={movies} title={title} getData={getData}/>
             )
     }
 }
 
-const MovieCategory = ({ movies, title }) => {
+const MovieCategory = ({ movies, title, getData }) => {
 
     const movieCards = movies.map(movie => {
         const { id } = movie
@@ -83,6 +90,7 @@ const MovieCategory = ({ movies, title }) => {
             <div className="row top-block">
                 <h5 className="block-title col-12">{ title }</h5>
                 { movieCards }
+                <Pagination viewRange="4" getData={ getData } />
             </div>
     )
 }
@@ -134,7 +142,9 @@ const mapDispatchToProps = {
     getMovies,
     moviesRequested,
     moviesError,
-    getSelectedMovie
+    getSelectedMovie,
+    setTotalPages,
+    setCurrentPage
 }
 
 
