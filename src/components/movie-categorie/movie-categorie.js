@@ -97,7 +97,7 @@ const MovieCategory = ({ movies, title, getData }) => {
 
 const MovieItem = ({ movie }) => {
 
-    const { id, title, year, genres, poster, rating, overview } = movie
+    const { id, title, year, poster, rating, overview } = movie
 
     return(
         <Link className="card movie-card" to={ `/movie/${id}` }>

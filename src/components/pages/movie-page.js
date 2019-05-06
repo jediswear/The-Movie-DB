@@ -53,9 +53,7 @@ class MoviePage extends Component {
                             <i className="material-icons">
                                 play_circle_outline
                             </i>
-                            <img
-                                src={ poster }
-                            />
+                            <img src={ poster } alt=""/>
                         </div>
                     </div>
                     <div className="col-lg-8 col-md-6 main-content">
