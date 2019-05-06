@@ -7,8 +7,30 @@ const initialState = {
     selectedMovie: null,
     searchResults: [],
     movieById: null,
-    currentPage: 1,
-    totalPages: 1
+    pagination: {
+        currentPage: 1,
+        totalPages: 1
+    }
+}
+
+const updatePagination = (state, action) => {
+
+    const { type, payload } = action
+
+    switch (type) {
+        case 'SET_CURRENT_PAGE':
+            return {
+                ...state.pagination,
+                currentPage: payload
+            }
+        case 'SET_TOTAL_PAGES':
+            return {
+                ...state.pagination,
+                totalPages: payload
+            }
+        default:
+            return state.pagination
+    }
 }
 
 const reducer = (state = initialState, action) => {
@@ -70,14 +92,10 @@ const reducer = (state = initialState, action) => {
                 movieById: payload
             }
         case 'SET_CURRENT_PAGE':
-            return {
-                ...state,
-                currentPage: payload
-            }
         case 'SET_TOTAL_PAGES':
             return {
                 ...state,
-                totalPages: payload
+                pagination: updatePagination(state, action)
             }
         default:
             return state

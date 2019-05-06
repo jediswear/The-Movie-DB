@@ -45,7 +45,7 @@ const App  = ({ apiService, currentPage }) => {
     )
 }
 
-const mapStateToProps = ({ currentPage }) => {
+const mapStateToProps = ({ pagination: { currentPage } }) => {
     return {
         currentPage
     }

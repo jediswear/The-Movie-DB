@@ -63,7 +63,7 @@ class Pagination extends Component {
 
 const mapStateToProps = (state) => {
 
-    const { currentPage, movies, totalPages } = state
+    const { pagination: {currentPage, totalPages }, movies} = state
 
     return {
         currentPage,
